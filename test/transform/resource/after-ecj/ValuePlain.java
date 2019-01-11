@@ -31,7 +31,7 @@ final @lombok.Value class Value1 {
     return result;
   }
   public @java.lang.Override @java.lang.SuppressWarnings("all") java.lang.String toString() {
-    return (((("Value1(x=" + this.getX()) + ", name=") + this.getName()) + ")");
+    return ((((("Value1(x=" + this.getX()) + ",") + java.lang.System.getProperty("line.separator")) + "name=") + this.getName()) + ")");
   }
   public @java.lang.SuppressWarnings("all") Value1(final int x, final String name) {
     super();
@@ -76,7 +76,7 @@ final @lombok.Value class Value1 {
     return result;
   }
   public @java.lang.Override @java.lang.SuppressWarnings("all") java.lang.String toString() {
-    return (((("Value2(x=" + this.getX()) + ", name=") + this.getName()) + ")");
+    return ((("Value2(x=" + this.getX()) + ", name=") + this.getName()) + ")");
   }
   public @java.lang.SuppressWarnings("all") Value2(final int x, final String name) {
     super();

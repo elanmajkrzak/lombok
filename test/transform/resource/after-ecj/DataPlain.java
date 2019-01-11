@@ -39,7 +39,7 @@ import lombok.Data;
     return result;
   }
   public @java.lang.Override @java.lang.SuppressWarnings("all") java.lang.String toString() {
-    return (((("Data1(x=" + this.getX()) + ", name=") + this.getName()) + ")");
+    return (((((("Data1(x=" + this.getX()) + ",") + java.lang.System.getProperty("line.separator")) + "name=") + this.getName()) + ")");
   }
   public @java.lang.SuppressWarnings("all") Data1(final int x) {
     super();

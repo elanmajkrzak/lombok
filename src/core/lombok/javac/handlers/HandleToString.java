@@ -147,10 +147,14 @@ public class HandleToString extends JavacAnnotationHandler<ToString> {
 		JCModifiers mods = maker.Modifiers(Flags.PUBLIC, List.of(overrideAnnotation));
 		JCExpression returnType = genJavaLangTypeRef(typeNode, "String");
 		
+		JCMethodInvocation getNewLine = maker.Apply(List.<JCExpression>nil(),
+				maker.Select(genJavaLangTypeRef(typeNode, "System"), typeNode.toName("getProperty")),
+				List.of((JCExpression)maker.Literal("line.separator")));
+		
 		boolean first = true;
 		
 		String typeName = getTypeName(typeNode);
-		String infix = ", ";
+		String infix = ",";
 		String suffix = ")";
 		String prefix;
 		if (callSuper) {
@@ -206,12 +210,14 @@ public class HandleToString extends JavacAnnotationHandler<ToString> {
 				continue;
 			}
 			
+			current = maker.Binary(CTC_PLUS, current, maker.Literal(infix));
+			
+			current = maker.Binary(CTC_PLUS, current, getNewLine);
+			
 			if (includeNames) {
 				String n = member.getInc() == null ? "" : member.getInc().name();
 				if (n.isEmpty()) n = memberNode.getName();
-				current = maker.Binary(CTC_PLUS, current, maker.Literal(infix + n + "="));
-			} else {
-				current = maker.Binary(CTC_PLUS, current, maker.Literal(infix));
+				current = maker.Binary(CTC_PLUS, current, maker.Literal(n + "="));
 			}
 			
 			current = maker.Binary(CTC_PLUS, current, expr);
